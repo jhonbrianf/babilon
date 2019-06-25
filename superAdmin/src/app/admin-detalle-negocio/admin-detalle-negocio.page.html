@@ -1,9 +1,52 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>admin-detalle-negocio</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title ><ion-icon align="left" name="arrow-back" (click)="Negocio()" >
+    </ion-icon>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detalle {{nombre}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <ion-icon name="create" (click)="presentAlert()"></ion-icon>
+  </ion-title>
+         
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title align="center"><b>{{nombre}}</b></ion-card-title>
+      <ion-list>
+        <ion-item>
+          <ion-label>Bar</ion-label>
+          <ion-note slot="end">{{bar}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Capacidad:</ion-label>
+          <ion-note slot="end">{{capacidad}} Personas</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Escenario:</ion-label>
+          <ion-note slot="end">{{escenario}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Garaje:</ion-label>
+          <ion-note slot="end">{{garaje}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Garzones:</ion-label>
+          <ion-note slot="end">{{garsones}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Servicio de Comidas:</ion-label>
+          <ion-note slot="end">{{servicio_comida}}</ion-note>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tipo de Salón:</ion-label>
+            <ion-note slot="end">{{tipo_salon}}</ion-note>
+          </ion-item>
 
+      </ion-list>
+    </ion-card-header>
+
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>
