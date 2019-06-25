@@ -1,0 +1,14 @@
+var firebaseConfig = {
+    apiKey: "AIzaSyBLJBVtNqPx6EC0jPOhTXxzAortkXaDBk8",
+    authDomain: "tecnologiasinternet-745d3.firebaseapp.com",
+    databaseURL: "https://tecnologiasinternet-745d3.firebaseio.com",
+    projectId: "tecnologiasinternet-745d3",
+    storageBucket: "tecnologiasinternet-745d3.appspot.com",
+    messagingSenderId: "596202129245",
+    appId: "1:596202129245:web:1aeba3b44305d5e1"
+  };
+
+
+KEY: AIzaSyB0m2Z97kH59QN_nKsV5tC6x7uhicZ27sM
+
+firebase  https://tecnologiasinternet-745d3.firebaseio.com/
