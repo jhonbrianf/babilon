@@ -12,10 +12,6 @@ const routes: Routes = [
     path: 'home',
     loadChildren: './home/home.module#HomePageModule', canActivate: [AutGuardGuard]
   },
-  {
-    path: 'list',
-    loadChildren: './list/list.module#ListPageModule'
-  },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
 ];
 
