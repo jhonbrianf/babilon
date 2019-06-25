@@ -12,3 +12,4 @@ var firebaseConfig = {
 KEY: AIzaSyB0m2Z97kH59QN_nKsV5tC6x7uhicZ27sM
 
 firebase  https://tecnologiasinternet-745d3.firebaseio.com/
+https://console.firebase.google.com/u/0/project/tecnologiasinternet-745d3/database/tecnologiasinternet-745d3/data

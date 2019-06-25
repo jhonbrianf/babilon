@@ -12,7 +12,11 @@ const routes: Routes = [
     path: 'home',
     loadChildren: './home/home.module#HomePageModule', canActivate: [AutGuardGuard]
   },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },  { path: 'admin-negocios', loadChildren: './admin-negocios/admin-negocios.module#AdminNegociosPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'list-user', loadChildren: './adminuser/list-user/list-user.module#ListUserPageModule' },
+  { path: 'create-user', loadChildren: './adminuser/create-user/create-user.module#CreateUserPageModule' },
+  { path: 'update-user', loadChildren: './adminuser/update-user/update-user.module#UpdateUserPageModule' },
+  { path: 'admin-negocios', loadChildren: './admin-negocios/admin-negocios.module#AdminNegociosPageModule' },
   { path: 'admin-detalle-negocio', loadChildren: './admin-detalle-negocio/admin-detalle-negocio.module#AdminDetalleNegocioPageModule' },
   { path: 'admin-reservas', loadChildren: './admin-reservas/admin-reservas.module#AdminReservasPageModule' }
 
