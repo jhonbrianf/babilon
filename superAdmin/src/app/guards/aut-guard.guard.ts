@@ -13,7 +13,7 @@ export class AutGuardGuard implements CanActivate {
     console.log(route);
 
     let authInfo = {
-        authenticated: false
+        authenticated: true
     };
 
     if (!authInfo.authenticated) {
