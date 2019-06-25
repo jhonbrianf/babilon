@@ -15,7 +15,11 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'list-user', loadChildren: './adminuser/list-user/list-user.module#ListUserPageModule' },
   { path: 'create-user', loadChildren: './adminuser/create-user/create-user.module#CreateUserPageModule' },
-  { path: 'update-user', loadChildren: './adminuser/update-user/update-user.module#UpdateUserPageModule' }
+  { path: 'update-user', loadChildren: './adminuser/update-user/update-user.module#UpdateUserPageModule' },
+  { path: 'admin-negocios', loadChildren: './admin-negocios/admin-negocios.module#AdminNegociosPageModule' },
+  { path: 'admin-detalle-negocio', loadChildren: './admin-detalle-negocio/admin-detalle-negocio.module#AdminDetalleNegocioPageModule' },
+  { path: 'admin-reservas', loadChildren: './admin-reservas/admin-reservas.module#AdminReservasPageModule' }
+
 ];
 
 @NgModule({
