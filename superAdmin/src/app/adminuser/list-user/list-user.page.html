@@ -1,9 +1,19 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>list-user</ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Lista de usuarios</ion-title>
+    <ion-buttons slog="end">
+        <ion-button >
+            <ion-icon name="add-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
   </ion-toolbar>
+ 
 </ion-header>
 
 <ion-content>
-
+    <ion-list>
+  <ion-item *ngFor="let item of users" >
+    <ion-label>{{item.nombre}}  {{item.apellidos}}</ion-label>
+  </ion-item>
+</ion-list>
 </ion-content>
