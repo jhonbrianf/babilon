@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AngularFireDatabase} from '@angular/fire/database';
 import { Router } from '@angular/router';
 @Component({
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class CreateUserPage implements OnInit {
  usuario:Usuarios;
+ @ViewChild('return') back:ElementRef;
  db$: any;
   constructor(private db: AngularFireDatabase,private router: Router) { 
   }
@@ -20,7 +21,7 @@ export class CreateUserPage implements OnInit {
        this.usuario.nivel=2;
        delete this.usuario.password;
        this.db$.push(this.usuario).then(data=>{
-        this.router.navigate(['list-user']);
+       this.back.nativeElement.click;
        });
 
 	
