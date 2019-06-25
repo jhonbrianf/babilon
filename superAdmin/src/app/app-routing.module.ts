@@ -18,7 +18,9 @@ const routes: Routes = [
   { path: 'update-user', loadChildren: './adminuser/update-user/update-user.module#UpdateUserPageModule' },
   { path: 'admin-negocios', loadChildren: './admin-negocios/admin-negocios.module#AdminNegociosPageModule' },
   { path: 'admin-detalle-negocio', loadChildren: './admin-detalle-negocio/admin-detalle-negocio.module#AdminDetalleNegocioPageModule' },
-  { path: 'admin-reservas', loadChildren: './admin-reservas/admin-reservas.module#AdminReservasPageModule' }
+  { path: 'admin-reservas', loadChildren: './admin-reservas/admin-reservas.module#AdminReservasPageModule' },
+  { path: 'admin-agregar-negocio', loadChildren: './admin-agregar-negocio/admin-agregar-negocio.module#AdminAgregarNegocioPageModule' },
+  { path: 'admin-actualizar-negocio', loadChildren: './admin-actualizar-negocio/admin-actualizar-negocio.module#AdminActualizarNegocioPageModule' }
 
 ];
 
