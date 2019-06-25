@@ -11,23 +11,24 @@ import { Negocio } from '../interface/negocio';
 })
 export class AdminAgregarNegocioPage implements OnInit {
 
-  constructor(private router:Router, private db: AngularFireDatabase) {
-   }
+  negocio: Negocio;
+  db$: any;
+
+  constructor(private router: Router, private db: AngularFireDatabase) {
+  }
 
   ngOnInit() {
+    this.db$ = this.db.list('/negocios');
   }
 
-  guardar(negocio: Negocio){
-    negocio.nombre = "vacio uno";
-    
-    this.db.list("/negocio").push(negocio).then(result=>{
-      console.log(result);
-      //this.router.navigateByUrl('/admin-negocio');
-    })
-    //  this.listaNegocios.push(negocio)
+  guardar(forms) {
+    this.negocio = forms.value;
+    this.db$.push(this.negocio).then(resultado => {
+      this.router.navigateByUrl('/admin-negocios');
+    });
   }
 
-  atras(){
-    this.router.navigateByUrl('/admin-negocio');
+  atras() {
+    this.router.navigateByUrl('/admin-negocios');
   }
 }

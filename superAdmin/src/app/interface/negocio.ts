@@ -7,12 +7,12 @@ export interface Negocio {
     longitud: string;
     estado: string;
     detalle: {
-        bar: string,
+        bar: boolean,
         capasidad: number,
-        escenario: string,
-        garage: string,
-        garsones: string,
-        servicio_comida: string,
+        escenario: boolean,
+        garage: boolean,
+        garsones: number,
+        servicio_comida: boolean,
         tipo_salon: string
     }
 }

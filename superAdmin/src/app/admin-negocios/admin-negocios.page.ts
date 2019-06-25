@@ -14,6 +14,7 @@ export class AdminNegociosPage implements OnInit {
   ngOnInit() {
   }
 
+ 
   detalleNegocio(){
     this.router.navigateByUrl('/admin-detalle-negocio');
   }

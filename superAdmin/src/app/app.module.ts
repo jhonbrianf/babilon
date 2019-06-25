@@ -33,6 +33,7 @@ export const environment = {
   ],
   providers: [
     StatusBar,
+    AngularFireDatabase,
     SplashScreen,
     AngularFireDatabase,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

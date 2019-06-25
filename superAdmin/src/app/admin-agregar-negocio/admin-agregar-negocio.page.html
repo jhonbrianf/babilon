@@ -10,83 +10,95 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Datos</ion-list-header>
 
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+  <form #form="ngForm" (ngSubmit)="guardar(form)">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-list-header>Datos</ion-list-header>
 
-    <ion-item>
-      <ion-label position="floating">Precio</ion-label>
-      <ion-input type="number"></ion-input>
-    </ion-item>
+            <ion-item>
+              <ion-label position="floating">Nombre</ion-label>
+              <ion-input name="nombre" type="text" ngModel required></ion-input>
+            </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Ubicación</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+            <ion-item>
+              <ion-label position="floating">Precio</ion-label>
+              <ion-input name="precio" type="number" ngModel required></ion-input>
+            </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Latitud</ion-label>
-      <ion-input type="number"></ion-input>
-    </ion-item>
+            <ion-item>
+              <ion-label position="floating">Ubicación</ion-label>
+              <ion-input name="ubicacion" type="text" ngModel required></ion-input>
+            </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Longitud</ion-label>
-      <ion-input type="number"></ion-input>
-    </ion-item>
+            <ion-item>
+              <ion-label position="floating">Latitud</ion-label>
+              <ion-input name="latitud" type="number" ngModel required></ion-input>
+            </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Estado</ion-label>
-      <ion-select value="Libre" okText="Okay" cancelText="Dismiss">
-        <ion-select-option value="Libre">Libre</ion-select-option>
-        <ion-select-option value="Ocupado">Ocupado</ion-select-option>
-        <ion-select-option value="Mantenimiento">Matenimiento</ion-select-option>
-      </ion-select>
-    </ion-item>
+            <ion-item>
+              <ion-label position="floating">Longitud</ion-label>
+              <ion-input name="longitud" type="number" ngModel required></ion-input>
+            </ion-item>
 
-    <br>
-    <ion-list-header>Detalles</ion-list-header>
-    <ion-item>
-      <ion-label position="floating">Capacidad</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
+            <ion-item>
+              <ion-label position="floating">Estado</ion-label>
+              <ion-select name="estado" value="Libre" okText="Aceptar" cancelText="Cancelar" ngModel=Libre>
+                <ion-select-option value="Libre">Libre</ion-select-option>
+                <ion-select-option value="Ocupado">Ocupado</ion-select-option>
+                <ion-select-option value="Mantenimiento">Matenimiento</ion-select-option>
+              </ion-select>
+            </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Garsones</ion-label>
-      <ion-input type="number"></ion-input>
-    </ion-item>
+            <br>
+            <ion-list-header>Detalles</ion-list-header>
+            <ion-item>
+              <ion-label position="floating">Capacidad</ion-label>
+              <ion-input name="capacidad" type="number" ngModel required></ion-input>
+            </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Tipo Salon</ion-label>
-      <ion-select value="Salon" okText="Okay" cancelText="Dismiss">
-        <ion-select-option value="Salon">Salon</ion-select-option>
-        <ion-select-option value="AireLibre">Aire Libre</ion-select-option>
-      </ion-select>
-    </ion-item><br>
+            <ion-item>
+              <ion-label position="floating">Garsones</ion-label>
+              <ion-input name="garsones" type="number" ngModel required></ion-input>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Bar</ion-label>
-      <ion-checkbox checked="true"></ion-checkbox>
-    </ion-item>
+            <ion-item>
+              <ion-label position="floating">Tipo Salon</ion-label>
+              <ion-select name="salon" value="Salon" okText="Aceptar" cancelText="Cancelar" ngModel=Salon>
+                <ion-select-option value="Salon">Salon</ion-select-option>
+                <ion-select-option value="AireLibre">Aire Libre</ion-select-option>
+              </ion-select>
+            </ion-item><br>
 
-    <ion-item>
-      <ion-label>Escenario</ion-label>
-      <ion-checkbox checked="true"></ion-checkbox>
-    </ion-item>
+            <ion-item>
+              <ion-label>Bar</ion-label>
+              <ion-checkbox name="bar" checked="true" ngModel=true></ion-checkbox>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Garage</ion-label>
-      <ion-checkbox checked="true"></ion-checkbox>
-    </ion-item>
+            <ion-item>
+              <ion-label>Escenario</ion-label>
+              <ion-checkbox name="escenario" checked="true" ngModel=true></ion-checkbox>
+            </ion-item>
 
-    <ion-item>
-      <ion-label>Servicio de Comida</ion-label>
-      <ion-checkbox checked="true"></ion-checkbox>
-    </ion-item>
-  </ion-list>
+            <ion-item>
+              <ion-label>Garage</ion-label>
+              <ion-checkbox name="garage" checked="true" ngModel=true></ion-checkbox>
+            </ion-item>
 
-  <ion-button color="success" expand="block" click="guardar()">Agregar</ion-button>
+            <ion-item>
+              <ion-label>Servicio de Comida</ion-label>
+              <ion-checkbox name="servicioComida" checked="true" ngModel=true></ion-checkbox>
+            </ion-item>
+          </div>
+
+          <div padding>
+            <ion-button size="large" type="submit" expand="block">Registrar</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
 </ion-content>
