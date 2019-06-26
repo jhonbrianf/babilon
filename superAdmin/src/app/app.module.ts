@@ -12,6 +12,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { ClienteDetallesNegocioPageModule } from './cliente-detalles-negocio/cliente-detalles-negocio.module';
+import { ClientMapgooglePageModule } from './client-mapgoogle/client-mapgoogle.module';
 
 export const environment = {
   production: false,
@@ -32,7 +34,8 @@ export const environment = {
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [
     StatusBar,
