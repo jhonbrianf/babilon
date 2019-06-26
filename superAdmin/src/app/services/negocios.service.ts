@@ -27,11 +27,11 @@ export class NegociosService {
     return this.referenciaNegocios.push(negocio);
   }
 
-  actualizar(idNegocio, negocio){
+  actualizar(idNegocio: string, negocio: any){
     return this.referenciaNegocios.update(idNegocio, negocio);
   }
 
-  eliminar(idNegocio){
+  eliminar(idNegocio: string){
     this.dbFirebase.object('/negocios/' + idNegocio).remove();
   }
 
@@ -39,7 +39,7 @@ export class NegociosService {
     return this.listaNegocios;
   }
 
-  obtenerDatos(idNegocio){
+  obtenerDatos(idNegocio: string){
     return this.dbFirebase.object('/negocios/' + idNegocio);
   }
 }

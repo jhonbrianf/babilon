@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color=primary>
-    <ion-title>Salon de Eventos</ion-title>
+    <ion-title>Administración</ion-title>
 
     <ion-buttons slot="end">
       <ion-button (click)="agregarNegocio()">
@@ -11,8 +11,10 @@
 </ion-header>
 
 <ion-content>
-  <br><br>
   <ion-list>
+    <ion-item>
+      <p>MIS SALONES</p>
+    </ion-item>
     <ion-item *ngFor="let item of negocios">
       <ion-item-sliding>
         <ion-item-options side="start">

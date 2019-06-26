@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Negocio } from '../interface/negocio';
 import { NegociosService } from '../services/negocios.service';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-admin-negocios',
@@ -13,6 +14,8 @@ export class AdminNegociosPage implements OnInit {
   negocios: Negocio[] = [];
   constructor(
     private router: Router,
+    private alertController: AlertController,
+    private toastController: ToastController,
     private negocioService: NegociosService) {
       //Inicializacion del constructor
 
@@ -29,7 +32,7 @@ export class AdminNegociosPage implements OnInit {
     });
   }
 
-  detalleNegocio(item) {
+  detalleNegocio(item: any) {
     this.router.navigate(['/admin-detalle-negocio', item.key]);
   }
 
@@ -37,11 +40,43 @@ export class AdminNegociosPage implements OnInit {
     this.router.navigate(['/admin-agregar-negocio']);
   }
 
-  actualizarNegocio(item) {
+  actualizarNegocio(item: any) {
     this.router.navigate(['/admin-actualizar-negocio', item.key]);
   }
 
-  eliminarNegocio(item) {
+  async eliminarNegocio(item: any) {
+    const alert = await this.alertController.create({
+      header: '¿Desea Eliminar?',
+      message: '<strong>Este registro se eliminara permanentemente.</strong>',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.eliminar(item);
+          }
+        }
+      ]
+    });
 
+    await alert.present();
+  }
+  
+  async mensajeToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  eliminar(item: any) {
+    this.negocioService.eliminar(item.key);
+    this.mensajeToast("Registro Eliminado Exitosamente.");
   }
 }
