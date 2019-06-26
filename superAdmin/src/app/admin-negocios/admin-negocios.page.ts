@@ -10,8 +10,10 @@ import { AlertController, ToastController } from '@ionic/angular';
   styleUrls: ['./admin-negocios.page.scss'],
 })
 export class AdminNegociosPage implements OnInit {
-
+  
+  // Variables
   negocios: Negocio[] = [];
+
   constructor(
     private router: Router,
     private alertController: AlertController,

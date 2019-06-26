@@ -9,11 +9,11 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
-        path: 'cliente-detalle',
+        path: 'cliente-lista-negocios',
         children: [
           {
             path: '',
-            loadChildren:'../cliente-detalles-negocio/cliente-detalles-negocio.module#ClienteDetallesNegocioPageModule'
+            loadChildren: '../cliente-lista-negocios/cliente-lista-negocios.module#ClienteListaNegociosPageModule' 
           }
         ]
       },

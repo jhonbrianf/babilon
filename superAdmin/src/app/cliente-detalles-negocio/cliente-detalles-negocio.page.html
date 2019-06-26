@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color=primary>
-    <ion-title>Salon: <b>"{{negocio.nombre}}"</b></ion-title>
+    <ion-title><b>"{{negocio.nombre}}"</b></ion-title>
     <ion-buttons slot="start">
       <ion-back-button #return></ion-back-button>
     </ion-buttons>
@@ -54,20 +54,20 @@
 
           <ion-item>
             <ion-label>Escenario</ion-label>
-            <ion-icon *ngIf="negocio.bar" name="checkmark-circle" color=success></ion-icon>
-            <ion-icon *ngIf="!negocio.bar" name="close-circle" color=danger></ion-icon>
+            <ion-icon *ngIf="negocio.escenario" name="checkmark-circle" color=success></ion-icon>
+            <ion-icon *ngIf="!negocio.escenario" name="close-circle" color=danger></ion-icon>
           </ion-item>
 
           <ion-item>
             <ion-label>Garage</ion-label>
-            <ion-icon *ngIf="negocio.bar" name="checkmark-circle" color=success></ion-icon>
-            <ion-icon *ngIf="!negocio.bar" name="close-circle" color=danger></ion-icon>
+            <ion-icon *ngIf="negocio.garage" name="checkmark-circle" color=success></ion-icon>
+            <ion-icon *ngIf="!negocio.garage" name="close-circle" color=danger></ion-icon>
           </ion-item>
 
           <ion-item>
             <ion-label>Servicio de Comida</ion-label>
-            <ion-icon *ngIf="negocio.bar" name="checkmark-circle" color=success></ion-icon>
-            <ion-icon *ngIf="!negocio.bar" name="close-circle" color=danger></ion-icon>
+            <ion-icon *ngIf="negocio.servicioComida" name="checkmark-circle" color=success></ion-icon>
+            <ion-icon *ngIf="!negocio.servicioComida" name="close-circle" color=danger></ion-icon>
           </ion-item>
         </div>
       </ion-col>

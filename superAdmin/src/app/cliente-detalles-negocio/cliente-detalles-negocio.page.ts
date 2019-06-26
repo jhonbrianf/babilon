@@ -31,14 +31,14 @@ export class ClienteDetallesNegocioPage implements OnInit {
     this.obtenerDatos();
   }
 
-  actualizarNegocio() {
-    this.router.navigate(['/admin-actualizar-negocio', this.idNegocioObtenido]);
-  }
-
   obtenerDatos() {
     this.idNegocioObtenido = this.activeRoute.snapshot.paramMap.get('idNegocio');
     this.negocioService.obtenerDatos(this.idNegocioObtenido).valueChanges().subscribe((resultado: Negocio) => {
       this.negocio = resultado;
+      console.log(this.negocio);
     });
+  }
+
+  reservarSalon(){
   }
 }
