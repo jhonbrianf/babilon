@@ -11,7 +11,7 @@ export class UpdateUserPage implements OnInit {
 usuario:Usuarios;
 key:string
   constructor(private user:UsersService,private router: Router,private route: ActivatedRoute) { 
-    this.usuario = {nombre:"",apellidos:"",edad:0,correo:"",nivel:2,password:""};
+    this.usuario = {nombre:"",apellidos:"",edad:0,correo:"",nivel:2,password:"",estado:false};
   }
 
   ngOnInit() {
