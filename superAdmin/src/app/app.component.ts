@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from './services/auth.service';
+import { UsersService } from './services/users.service';
 
 @Component({
   selector: 'app-root',
@@ -42,9 +43,10 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router: Router,
     public afAuth: AngularFireAuth,
-    private auth: AuthService
+    private auth: AuthService,
+    private userServ:UsersService
   ) {
-    console.log("inicio");this.auth.authenticated
+    this.auth.authenticated
 
     this.initializeApp();
   }
@@ -53,7 +55,19 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.auth.getCurrentEmail();
     });
+    this.auth.getCurrentUser().then((user)=>{
+      console.log(user.email);
+      this.userServ.list2().subscribe((usuarios:Usuarios[])=>{
+        usuarios.forEach(element => {
+          if(user.email==element.correo){
+            this.afAuth.auth.signOut();
+            this.router.navigate(['/'])
+          }
+        });
+      })
+    })
   }
   logOut(){
     this.afAuth.auth.signOut();
