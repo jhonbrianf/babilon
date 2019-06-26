@@ -58,7 +58,6 @@ export class AppComponent {
       this.auth.getCurrentEmail();
     });
     this.auth.getCurrentUser().then((user)=>{
-      console.log(user.email);
       this.userServ.list2().subscribe((usuarios:Usuarios[])=>{
         usuarios.forEach(element => {
           if(user.email==element.correo){
@@ -71,6 +70,6 @@ export class AppComponent {
   }
   logOut(){
     this.afAuth.auth.signOut();
-    this.router.navigate(['/'])
+    this.router.navigateByUrl('/')
   }
 }
