@@ -1,3 +1,77 @@
+<ion-header>
+  <ion-toolbar color=primary>
+    <ion-title>Salon: <b>"{{negocio.nombre}}"</b></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button #return></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-HERE CLIENT DETALLE
+
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div padding>
+          <ion-list-header><b>Datos</b></ion-list-header>
+          <ion-item>
+            <ion-label>Precio: </ion-label>
+            <ion-label>{{ negocio.precio }} bs.</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>ubicacion: </ion-label>
+            <ion-label>{{ negocio.ubicacion }}.</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Estado: </ion-label>
+            <ion-label>{{ negocio.estado }}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Capacidad: </ion-label>
+            <ion-label>{{ negocio.capacidad }} Personas.</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Garsones: </ion-label>
+            <ion-label>{{ negocio.garsones }}</ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Tipo de Salon: </ion-label>
+            <ion-label>{{ negocio.tipoSalon }}</ion-label>
+          </ion-item>
+
+          <ion-list-header><b>Detalles</b></ion-list-header>
+
+          <ion-item>
+            <ion-label>Bar</ion-label>
+            <ion-icon *ngIf="negocio.bar" name="checkmark-circle" color=success></ion-icon>
+            <ion-icon *ngIf="!negocio.bar" name="close-circle" color=danger></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Escenario</ion-label>
+            <ion-icon *ngIf="negocio.bar" name="checkmark-circle" color=success></ion-icon>
+            <ion-icon *ngIf="!negocio.bar" name="close-circle" color=danger></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Garage</ion-label>
+            <ion-icon *ngIf="negocio.bar" name="checkmark-circle" color=success></ion-icon>
+            <ion-icon *ngIf="!negocio.bar" name="close-circle" color=danger></ion-icon>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Servicio de Comida</ion-label>
+            <ion-icon *ngIf="negocio.bar" name="checkmark-circle" color=success></ion-icon>
+            <ion-icon *ngIf="!negocio.bar" name="close-circle" color=danger></ion-icon>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

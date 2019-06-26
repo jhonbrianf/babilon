@@ -25,8 +25,6 @@ const routes: Routes = [
   { path: 'detail-user/:id', loadChildren: './adminuser/detail-user/detail-user.module#DetailUserPageModule' },
   { path: 'register-user', loadChildren: './register-user/register-user.module#RegisterUserPageModule' }
 
-
-
 ];
 
 @NgModule({
