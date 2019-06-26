@@ -5,13 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AdminReservasPage } from './admin-reservas.page';
-import { NgCalendarModule } from 'ionic2-calendar';
+import { ClienteListaReservasPage } from './cliente-lista-reservas.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminReservasPage
+    component: ClienteListaReservasPage
   }
 ];
 
@@ -20,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    NgCalendarModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [AdminReservasPage]
+  declarations: [ClienteListaReservasPage]
 })
-export class AdminReservasPageModule {}
+export class ClienteListaReservasPageModule {}

@@ -1,12 +1,3 @@
-<ion-header>
-  <ion-toolbar color=primary>
-    <ion-title>Reservas</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
 
   <ion-segment (ionChange)="segmentChanged($event)">
@@ -16,79 +7,12 @@
     <ion-segment-button value="aceptados">
       <ion-label>Aceptados</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="rechazados">
-      <ion-label>Cancelados</ion-label>
-    </ion-segment-button>
   </ion-segment>
 
   <ion-list *ngIf="segmento=='solicitudes'">
     <ion-item-sliding *ngFor="let item of reservasSolicitudes">
       <ion-item-options side="start">
         <ion-item-option color="danger" (click)="rechazar(item)">Cancelar</ion-item-option>
-      </ion-item-options>
-      <ion-item-options side="end">
-        <ion-item-option color="primary" (click)="aceptar(item)">Aceptar</ion-item-option>
-      </ion-item-options>
-
-      <ion-item>
-        <ion-grid>
-          <ion-row justify-content-center>
-            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-              <ion-label>Evento: {{ item.evento.title }}</ion-label>
-            </ion-col>
-            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-              <ion-label>Inicio: {{ item.evento.startTime | date:'MM/dd/yyyy h:mm a' }}</ion-label>
-            </ion-col>
-            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-              <ion-label>Fin: {{ item.evento.endTime | date:'MM/dd/yyyy h:mm a'  }}</ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-
-    </ion-item-sliding>
-
-    <ion-item *ngIf="reservasSolicitudes==''">
-      <p>No hay ninguna solicitud</p>
-    </ion-item>
-  </ion-list>
-
-  <ion-list *ngIf="segmento=='aceptados'">
-
-    <ion-row>
-      <!-- Move back one screen of the slides -->
-      <ion-col size="4" text-left>
-        <ion-button fill="clear" (click)="back()">
-          <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
-
-      <ion-col size="4" text-center>
-        <div class="textoMes">
-          {{ viewTitle }}
-        </div>
-      </ion-col>
-
-
-      <!-- Move forward one screen of the slides -->
-      <ion-col size="4" text-right>
-        <ion-button fill="clear" (click)="next()">
-          <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
-    <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
-      (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
-      (onTimeSelected)="onTimeSelected($event)" startHour="6" endHour="20" step="30" startingDayWeek="1">
-    </calendar>
-
-  </ion-list>
-
-  <ion-list *ngIf="segmento=='rechazados'">
-    <ion-item-sliding *ngFor="let item of reservasRechazadas">
-      <ion-item-options side="start">
-        <ion-item-option color="danger" (click)="eliminar(item)">Eliminar</ion-item-option>
       </ion-item-options>
 
       <ion-item>
@@ -108,8 +32,32 @@
       </ion-item>
 
     </ion-item-sliding>
-    <ion-item *ngIf="reservasRechazadas==''">
-      <p>No hay reservas canceladas.</p>
+    <ion-item *ngIf="reservasSolicitudes==''">
+        <p>No hay ninguna solicitud</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="segmento=='aceptados'">
+    <ion-item *ngFor="let item of reservasAceptadas">
+      <ion-item (click)="detalleReserva(item)">
+        <ion-grid>
+          <ion-row justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Evento: {{ item.evento.title }}</ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Inicio: {{ item.evento.startTime | date:'MM/dd/yyyy h:mm a' }}</ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Fin: {{ item.evento.endTime | date:'MM/dd/yyyy h:mm a' }}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-item>
+
+    <ion-item *ngIf="reservasAceptadas==''">
+        <p>No hay eventos Confirmados</p>
     </ion-item>
   </ion-list>
 

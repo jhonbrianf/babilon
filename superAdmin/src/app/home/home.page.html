@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color=primary>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -15,15 +15,19 @@
 
       <ion-tab-bar slot="bottom">
         <ion-tab-button tab="cliente-mapa">
-          <ion-icon name="flash"></ion-icon>
-          <ion-label>Salones Cercanos</ion-label>
+          <ion-icon name="globe"></ion-icon>
+          <ion-label>Mapa</ion-label>
         </ion-tab-button>
     
         <ion-tab-button tab="cliente-lista-negocios">
-          <ion-icon name="apps"></ion-icon>
-          <ion-label>Salones de Evento</ion-label>
+          <ion-icon name="cube"></ion-icon>
+          <ion-label>Salones de Eventos</ion-label>
         </ion-tab-button> 
         
+        <ion-tab-button tab="cliente-lista-reservas">
+            <ion-icon name="apps"></ion-icon>
+            <ion-label>Reservas</ion-label>
+          </ion-tab-button> 
       </ion-tab-bar>
     
     </ion-tabs>
