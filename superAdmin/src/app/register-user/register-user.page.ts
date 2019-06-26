@@ -28,7 +28,7 @@ export class RegisterUserPage implements OnInit {
   register(forms){
 
        this.usuario=forms.value;
-       this.usuario.nivel=1;
+       this.usuario.nivel=3;
        this.usuario.estado=true;
        this.afAuth.auth.createUserWithEmailAndPassword(this.usuario.correo as string, this.usuario.password as string)
        .then(() => {
