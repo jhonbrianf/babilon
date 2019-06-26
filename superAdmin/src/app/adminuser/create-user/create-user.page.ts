@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { AngularFireDatabase} from '@angular/fire/database';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/services/users.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.page.html',
@@ -8,22 +9,28 @@ import { Router } from '@angular/router';
 })
 export class CreateUserPage implements OnInit {
  usuario:Usuarios;
- @ViewChild('return') back:ElementRef;
- db$: any;
-  constructor(private db: AngularFireDatabase,private router: Router) { 
+ @ViewChild('return') back:any;
+
+  constructor( private user:UsersService,private router: Router,public afAuth: AngularFireAuth) { 
   }
 
   ngOnInit() {
-    this.db$ = this.db.list('/usuarios');
+  
   }
   register(forms){
-       this.usuario=forms.value;
-       this.usuario.nivel=2;
-       delete this.usuario.password;
-       this.db$.push(this.usuario).then(data=>{
-       this.back.nativeElement.click;
-       });
 
-	
+       this.usuario=forms.value;
+       this.usuario.nivel=1;
+       this.afAuth.auth.createUserWithEmailAndPassword(this.usuario.correo as string, this.usuario.password as string)
+       .then(() => {
+        delete this.usuario.password;
+           // on success hide form and store variables in login
+           this.user.create(this.usuario).then(data=>{
+            this.router.navigate(['/list-user']);
+          });
+       })
+       .catch((error) => {
+         alert(error);
+       });
   }
 }

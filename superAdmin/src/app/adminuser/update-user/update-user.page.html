@@ -1,9 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>update-user</ion-title>
+    <ion-title>Actualizar usuario</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button #return></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
+<ion-content >
+  <form  #form="ngForm" (ngSubmit)="actualizar(form)">
+    <ion-grid>
+      <ion-row  justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div padding>
+            <ion-item>
+              <ion-input  name="nombre" type="text" placeholder="Nombre" [ngModel]="usuario.nombre" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input  name="apellidos" type="text" placeholder="Apellidos" [ngModel]="usuario.apellidos" required></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-input  name="edad" type="number" placeholder="edad" [ngModel]="usuario.edad"required></ion-input>
+                </ion-item>
+            <ion-item>
+              <ion-input name="correo" type="email" placeholder="your@email.com" [ngModel]="usuario.correo" required></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block">actualizar</ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

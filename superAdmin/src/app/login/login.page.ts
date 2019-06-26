@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,14 +10,36 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
-  constructor(public alertController: AlertController) { }
+  UsuarioRef: AngularFireList<any>;
+  mensaje:string;
+  constructor(public menuCtrl: MenuController,private router: Router,private db: AngularFireDatabase,public alertController: AlertController,public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
 
   }
-  login(form){
 
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
+  
+  login(form){
+    this.afAuth.auth.signInWithEmailAndPassword(form.email, form.password)
+      .then((data) => {
+        // on success populate variables and select items
+        this.db.list('/usuarios', ref => ref.orderByChild('correo').equalTo(data.user.email)).snapshotChanges().subscribe(usuario=>{
+          console.log(usuario[0].payload.val());
+          let actual=usuario[0].payload.val() as Usuarios;
+          if(actual.nivel==1){
+            this.router.navigate(['/list-user']);
+          }else
+          if(actual.nivel==2){
+            this.router.navigate(['/admin-negocios']);
+          }
+        })
+      })
+      .catch((error) => {
+        this.mensaje="error usuario no encontrado, es posible que el usuario aya sido borrado"
+      });
   }
 
   async forgot() {
@@ -24,7 +49,7 @@ export class LoginPage implements OnInit {
       inputs: [
         {
           name: 'email',
-          type: 'text',
+          type: 'email',
           placeholder: 'wwwww.email@mail.com'
         }],
       buttons: [
@@ -37,13 +62,18 @@ export class LoginPage implements OnInit {
           }
         }, {
           text: 'enviar',
-          handler: () => {
-            console.log('Confirm Okay');
+          handler: (data) => {
+           this.resetPassword(data.email);
           }
         }
       ]
     });
 
     await alert.present();
+  }
+  resetPassword(email: string) {
+    return this.afAuth.auth.sendPasswordResetEmail(email)
+      .then(() => {console.log('sent Password Reset Email!'),alert("email enviado a su correo")})
+      .catch((error) => {console.log(error),alert("ocurrio un error");})
   }
 }

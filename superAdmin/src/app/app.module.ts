@@ -9,6 +9,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireDatabase } from '@angular/fire/database';
+import {AngularFireAuthModule } from '@angular/fire/auth'
 
 export const environment = {
   production: false,
@@ -28,6 +29,7 @@ export const environment = {
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
     IonicModule.forRoot(),
     AppRoutingModule
   ],
