@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Negocio } from '../interface/negocio';
 import { NegociosService } from '../services/negocios.service';
 import { AlertController, ToastController } from '@ionic/angular';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-admin-negocios',
@@ -15,8 +16,8 @@ export class AdminNegociosPage implements OnInit {
   constructor(
     private router: Router,
     private alertController: AlertController,
-    private toastController: ToastController,
-    private negocioService: NegociosService) {
+    private negocioService: NegociosService,
+    private toastController: ToastController) {
       //Inicializacion del constructor
 
    }

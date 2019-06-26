@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Negocio } from '../interface/negocio';
 import { NegociosService } from '../services/negocios.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-admin-actualizar-negocio',
@@ -17,7 +18,8 @@ export class AdminActualizarNegocioPage implements OnInit {
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
-    private negocioService: NegociosService) {
+    private negocioService: NegociosService,
+    private toastController: ToastController) {
     //Inicializacion de constructor
     //inicializando la interface de negocio
     this.negocio = {
@@ -44,6 +46,15 @@ export class AdminActualizarNegocioPage implements OnInit {
   actualizar(form: any) {
     this.negocioService.actualizar(this.idNegocioObtenido, form.value).then(resuldato => {
       this.router.navigateByUrl('/admin-negocios');
+      this.mensajeToast("Registro Actualizado Exitosamente.")
     });
+  }
+
+  async mensajeToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000
+    });
+    toast.present();
   }
 }

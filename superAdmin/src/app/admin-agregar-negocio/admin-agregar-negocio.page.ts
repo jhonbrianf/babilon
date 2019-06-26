@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Negocio } from '../interface/negocio';
 import { NegociosService } from '../services/negocios.service';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -16,7 +17,8 @@ export class AdminAgregarNegocioPage implements OnInit {
 
   constructor(
     private router: Router,
-    private negocioService: NegociosService) {
+    private negocioService: NegociosService,
+    private toastController: ToastController) {
     // Inicializacion de constructor
   }
 
@@ -27,10 +29,15 @@ export class AdminAgregarNegocioPage implements OnInit {
   guardar(form: any) {
     this.negocioService.crear(form.value).then(resultado=>{
       this.router.navigateByUrl('/admin-negocios');
+      this.mensajeToast("Registro Agregado Exitosamente.")
     });
   }
 
-  atras() {
-    this.router.navigateByUrl('/admin-negocios');
+  async mensajeToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000
+    });
+    toast.present();
   }
 }
