@@ -13,23 +13,25 @@ export class AdminActualizarNegocioPage implements OnInit {
 
   negocio: Negocio;
   db$: any;
-  idNegocio: string;
+  idObtenido: string;
 
   constructor(private router: Router, private db: AngularFireDatabase, private activeRoute: ActivatedRoute) {
-    this.idNegocio = this.activeRoute.snapshot.paramMap.get('id');
+  
+    this.idObtenido = this.activeRoute.snapshot.paramMap.get('id');
     this.obtenerDatos();
   }
 
   ngOnInit() {
     this.db$ = this.db.list('/negocios');
+
   }
 
   obtenerDatos() {
-    var id = this.idNegocio;
+    var idNegocio = this.idObtenido;
     var ref = firebase.database().ref('negocios/');
     ref.once("value")
-      .then( (resultado) => {
-      var negocio = resultado.child(id).val();
+      .then((resultado) => {
+        var negocio = resultado.child(idNegocio).val();
         console.log(negocio);
       });
   }
