@@ -34,7 +34,8 @@ export const environment = {
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [
     StatusBar,

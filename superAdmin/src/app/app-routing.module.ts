@@ -10,7 +10,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'home',
+    path: '',
     loadChildren: './home/home.module#HomePageModule', canActivate: [AutGuardGuard]
   },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
