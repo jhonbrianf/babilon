@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Negocio } from '../interface/negocio';
 import { NegociosService } from '../services/negocios.service';
 import { AlertController, ToastController } from '@ionic/angular';
-import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-admin-negocios',
