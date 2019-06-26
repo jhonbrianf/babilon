@@ -30,4 +30,8 @@ this.usuarios=data;
   delete(item){
   this.user.delete(item);
   }
+  
+  detail(item){
+    this.router.navigate(['detail-user/'+item.key]);
+  }
 }

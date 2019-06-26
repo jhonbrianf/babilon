@@ -27,7 +27,8 @@ export class LoginPage implements OnInit {
       .then((data) => {
         // on success populate variables and select items
         this.db.list('/usuarios', ref => ref.orderByChild('correo').equalTo(data.user.email)).snapshotChanges().subscribe(usuario=>{
-          console.log(usuario[0].payload.val());
+
+          if(usuario[0]){
           let actual=usuario[0].payload.val() as Usuarios;
           if(actual.nivel==1){
             this.router.navigate(['/list-user']);
@@ -35,6 +36,9 @@ export class LoginPage implements OnInit {
           if(actual.nivel==2){
             this.router.navigate(['/admin-negocios']);
           }
+        }else{
+          this.mensaje="error usuario no encontrado, es posible que el usuario aya sido borrado"
+        }
         })
       })
       .catch((error) => {
