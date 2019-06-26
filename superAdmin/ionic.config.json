@@ -1,5 +1,7 @@
 {
   "name": "superAdmin",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
