@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { Negocio } from '../interface/negocio';
+import { NegociosService } from '../services/negocios.service';
 
 
 @Component({
@@ -14,16 +14,18 @@ export class AdminAgregarNegocioPage implements OnInit {
   negocio: Negocio;
   db$: any;
 
-  constructor(private router: Router, private db: AngularFireDatabase) {
+  constructor(
+    private router: Router,
+    private negocioService: NegociosService) {
+    // Inicializacion de constructor
   }
 
   ngOnInit() {
-    this.db$ = this.db.list('/negocios');
+    
   }
 
-  guardar(forms) {
-    this.negocio = forms.value;
-    this.db$.push(this.negocio).then(resultado => {
+  guardar(form: any) {
+    this.negocioService.crear(form.value).then(resultado=>{
       this.router.navigateByUrl('/admin-negocios');
     });
   }
