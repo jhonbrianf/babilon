@@ -3,8 +3,8 @@ export interface Negocio {
     nombre: string;
     costo: number;
     ubicacion: string;
-    latitud: string;
-    longitud: string;
+    latitud: number;
+    longitud: number;
     estado: string;
     detalle: {
         bar: boolean,
@@ -12,7 +12,7 @@ export interface Negocio {
         escenario: boolean,
         garage: boolean,
         garsones: number,
-        servicio_comida: boolean,
-        tipo_salon: string
+        servicioComida: boolean,
+        tipoSalon: string
     }
 }

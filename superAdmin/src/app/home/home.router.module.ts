@@ -5,15 +5,15 @@ import { HomePage } from './home.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: 'home',
     component: HomePage,
     children: [
       {
-        path: 'cliente-detalle',
+        path: 'cliente-lista-negocios',
         children: [
           {
             path: '',
-            loadChildren:'../cliente-detalles-negocio/cliente-detalles-negocio.module#ClienteDetallesNegocioPageModule'
+            loadChildren: '../cliente-lista-negocios/cliente-lista-negocios.module#ClienteListaNegociosPageModule' 
           }
         ]
       },
@@ -28,14 +28,14 @@ const routes: Routes = [
       },     
       {
         path: '',
-        redirectTo: '/tabs/cliente-mapa',
+        redirectTo: '/home/cliente-mapa',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/cliente-mapa',
+    redirectTo: '/home/cliente-mapa',
     pathMatch: 'full'
   }
 ];

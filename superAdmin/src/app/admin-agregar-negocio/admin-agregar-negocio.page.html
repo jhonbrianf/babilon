@@ -2,9 +2,7 @@
   <ion-toolbar color=primary>
     <ion-title>Agregar Negocio</ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="atras()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </ion-button>
+      <ion-back-button #return></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -20,27 +18,27 @@
 
             <ion-item>
               <ion-label position="floating">Nombre</ion-label>
-              <ion-input name="nombre" type="text" ngModel required></ion-input>
+              <ion-input name="nombre" type="text" ngModel></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Precio</ion-label>
-              <ion-input name="precio" type="number" ngModel required></ion-input>
+              <ion-input name="precio" type="number" ngModel></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Ubicación</ion-label>
-              <ion-input name="ubicacion" type="text" ngModel required></ion-input>
+              <ion-input name="ubicacion" type="text" ngModel></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Latitud</ion-label>
-              <ion-input name="latitud" type="number" ngModel required></ion-input>
+              <ion-input name="latitud" type="number" ngModel></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Longitud</ion-label>
-              <ion-input name="longitud" type="number" ngModel required></ion-input>
+              <ion-input name="longitud" type="number" ngModel></ion-input>
             </ion-item>
 
             <ion-item>
@@ -56,17 +54,17 @@
             <ion-list-header>Detalles</ion-list-header>
             <ion-item>
               <ion-label position="floating">Capacidad</ion-label>
-              <ion-input name="capacidad" type="number" ngModel required></ion-input>
+              <ion-input name="capacidad" type="number" ngModel></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Garsones</ion-label>
-              <ion-input name="garsones" type="number" ngModel required></ion-input>
+              <ion-input name="garsones" type="number" ngModel></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-label position="floating">Tipo Salon</ion-label>
-              <ion-select name="salon" value="Salon" okText="Aceptar" cancelText="Cancelar" ngModel=Salon>
+              <ion-select name="tipoSalon" value="Salon" okText="Aceptar" cancelText="Cancelar" ngModel=Salon>
                 <ion-select-option value="Salon">Salon</ion-select-option>
                 <ion-select-option value="AireLibre">Aire Libre</ion-select-option>
               </ion-select>

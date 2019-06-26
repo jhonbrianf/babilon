@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <p>SALONES DE EVENTO</p>
+    </ion-item>
+    <ion-item *ngFor="let item of negocios">
+
+      <ion-item (click)="detalleNegocio(item)">
+        <ion-card-header>
+          <ion-card-title>{{ item.nombre }}</ion-card-title>
+        </ion-card-header>
+      </ion-item>
+
+    </ion-item>
+  </ion-list>
+</ion-content>

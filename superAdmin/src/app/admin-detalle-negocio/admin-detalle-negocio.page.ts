@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Negocio } from '../interface/negocio';
+import { NegociosService } from '../services/negocios.service';
 
 @Component({
   selector: 'app-admin-detalle-negocio',
@@ -9,35 +10,36 @@ import { AlertController } from '@ionic/angular';
 })
 export class AdminDetalleNegocioPage implements OnInit {
 
-  nombre:string="Moes";
-  bar: boolean =true;
-  capacidad: number=18;
-  escenario: boolean=true;
-  garaje: boolean=true;
-  garsones: number=22;
-  servicio_comida:boolean=true;
-  tipo_salon:string="Aire Libre";
-
-
-  constructor(private router:Router,
-    public alertController: AlertController
-    ) { }
+   // Variables
+   negocio: Negocio;
+   idNegocioObtenido: string;
+   
+  constructor(
+    private router: Router,
+    private activeRoute: ActivatedRoute,
+    private negocioService: NegociosService) {
+    //Inicializacion del contructor
+    //inicializando la interface de negocio
+    this.negocio = {
+      $key: "", nombre: "", costo: 0, ubicacion: "", latitud: 0, longitud: 0, estado: "",
+      detalle: {
+        bar: false, capasidad: 0, escenario: false, garage: false, garsones: 0, servicioComida: false, tipoSalon: ""
+      }
+    }
+  }
 
   ngOnInit() {
-  }
-  Negocio(){
-    this.router.navigateByUrl('/admin-negocios');
+    this.obtenerDatos();
   }
 
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Alerta',
-      subHeader: 'Modificación',
-      message: 'Desea modificar sus datos?',
-      buttons: ['OK']
+  actualizarNegocio() {
+    this.router.navigate(['/admin-actualizar-negocio', this.idNegocioObtenido]);
+  }
+
+  obtenerDatos() {
+    this.idNegocioObtenido = this.activeRoute.snapshot.paramMap.get('idNegocio');
+    this.negocioService.obtenerDatos(this.idNegocioObtenido).valueChanges().subscribe((resultado: Negocio) => {
+      this.negocio = resultado;
     });
-
-    await alert.present();
   }
-
 }

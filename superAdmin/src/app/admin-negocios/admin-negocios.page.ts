@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Negocio } from '../interface/negocio';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { NegociosService } from '../services/negocios.service';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-admin-negocios',
@@ -9,9 +10,16 @@ import { AngularFireDatabase } from '@angular/fire/database';
   styleUrls: ['./admin-negocios.page.scss'],
 })
 export class AdminNegociosPage implements OnInit {
-
+  
+  // Variables
   negocios: Negocio[] = [];
-  constructor(private router: Router, private db: AngularFireDatabase) {
+
+  constructor(
+    private router: Router,
+    private alertController: AlertController,
+    private negocioService: NegociosService,
+    private toastController: ToastController) {
+      //Inicializacion del constructor
 
    }
 
@@ -19,35 +27,59 @@ export class AdminNegociosPage implements OnInit {
     this.listarNegocios();
   }
 
-  urlConsumo() {
-    return this.db.list('/negocios');
-  }
-
   listarNegocios() {
     this.negocios = [];
-    this.urlConsumo().snapshotChanges().subscribe(data => {
-      data.forEach(item => {
-        let negocio = item.payload.toJSON();
-        negocio['$key'] = item.key;
-        console.log(negocio);
-        this.negocios.push(negocio as Negocio);
-      })
-    })
+    this.negocioService.listar().subscribe(resultado => {
+      this.negocios = resultado;
+    });
   }
 
-  detalleNegocio(item) {
-    this.router.navigate(['/admin-detalle-negocio', item.$key]);
+  detalleNegocio(item: any) {
+    this.router.navigate(['/admin-detalle-negocio', item.key]);
   }
 
   agregarNegocio() {
     this.router.navigate(['/admin-agregar-negocio']);
   }
 
-  editarNegocio(item) {
-    this.router.navigate(['/admin-actualizar-negocio', item.$key]);
+  actualizarNegocio(item: any) {
+    this.router.navigate(['/admin-actualizar-negocio', item.key]);
   }
 
-  eliminarNegocio(item) {
+  async eliminarNegocio(item: any) {
+    const alert = await this.alertController.create({
+      header: '¿Desea Eliminar?',
+      message: '<strong>Este registro se eliminara permanentemente.</strong>',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.eliminar(item);
+          }
+        }
+      ]
+    });
 
+    await alert.present();
   }
+  
+  async mensajeToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  eliminar(item: any) {
+    this.negocioService.eliminar(item.key);
+    this.mensajeToast("Registro Eliminado Exitosamente.");
+  }
+
 }
