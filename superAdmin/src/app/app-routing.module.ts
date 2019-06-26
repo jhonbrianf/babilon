@@ -18,10 +18,10 @@ const routes: Routes = [
   { path: 'create-user', loadChildren: './adminuser/create-user/create-user.module#CreateUserPageModule',canActivate: [AutGuardGuard] },
   { path: 'update-user/:id', loadChildren: './adminuser/update-user/update-user.module#UpdateUserPageModule',canActivate: [AutGuardGuard] },
   { path: 'admin-negocios', loadChildren: './admin-negocios/admin-negocios.module#AdminNegociosPageModule',canActivate: [AutGuardGuard] },
-  { path: 'admin-detalle-negocio/:id', loadChildren: './admin-detalle-negocio/admin-detalle-negocio.module#AdminDetalleNegocioPageModule',canActivate: [AutGuardGuard] },
+  { path: 'admin-detalle-negocio/:idNegocio', loadChildren: './admin-detalle-negocio/admin-detalle-negocio.module#AdminDetalleNegocioPageModule',canActivate: [AutGuardGuard] },
   { path: 'admin-reservas', loadChildren: './admin-reservas/admin-reservas.module#AdminReservasPageModule',canActivate: [AutGuardGuard] },
   { path: 'admin-agregar-negocio', loadChildren: './admin-agregar-negocio/admin-agregar-negocio.module#AdminAgregarNegocioPageModule',canActivate: [AutGuardGuard] },
-  { path: 'admin-actualizar-negocio/:id', loadChildren: './admin-actualizar-negocio/admin-actualizar-negocio.module#AdminActualizarNegocioPageModule',canActivate: [AutGuardGuard] },
+  { path: 'admin-actualizar-negocio/:idNegocio', loadChildren: './admin-actualizar-negocio/admin-actualizar-negocio.module#AdminActualizarNegocioPageModule',canActivate: [AutGuardGuard] },
   { path: 'detail-user/:id', loadChildren: './adminuser/detail-user/detail-user.module#DetailUserPageModule' }
 
 

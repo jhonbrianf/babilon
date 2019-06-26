@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Negocio } from '../interface/negocio';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { NegociosService } from '../services/negocios.service';
 
 @Component({
   selector: 'app-admin-negocios',
@@ -11,7 +11,10 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class AdminNegociosPage implements OnInit {
 
   negocios: Negocio[] = [];
-  constructor(private router: Router, private db: AngularFireDatabase) {
+  constructor(
+    private router: Router,
+    private negocioService: NegociosService) {
+      //Inicializacion del constructor
 
    }
 
@@ -19,32 +22,23 @@ export class AdminNegociosPage implements OnInit {
     this.listarNegocios();
   }
 
-  urlConsumo() {
-    return this.db.list('/negocios');
-  }
-
   listarNegocios() {
     this.negocios = [];
-    this.urlConsumo().snapshotChanges().subscribe(data => {
-      data.forEach(item => {
-        let negocio = item.payload.toJSON();
-        negocio['$key'] = item.key;
-        console.log(negocio);
-        this.negocios.push(negocio as Negocio);
-      })
-    })
+    this.negocioService.listar().subscribe(resultado => {
+      this.negocios = resultado;
+    });
   }
 
   detalleNegocio(item) {
-    this.router.navigate(['/admin-detalle-negocio', item.$key]);
+    this.router.navigate(['/admin-detalle-negocio', item.key]);
   }
 
   agregarNegocio() {
     this.router.navigate(['/admin-agregar-negocio']);
   }
 
-  editarNegocio(item) {
-    this.router.navigate(['/admin-actualizar-negocio', item.$key]);
+  actualizarNegocio(item) {
+    this.router.navigate(['/admin-actualizar-negocio', item.key]);
   }
 
   eliminarNegocio(item) {

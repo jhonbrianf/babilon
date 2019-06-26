@@ -27,15 +27,15 @@ export class NegociosService {
     return this.referenciaNegocios.push(negocio);
   }
 
-  actualizar(idNegocio, Negocio){
-    return this.referenciaNegocios.update(idNegocio, Negocio);
+  actualizar(idNegocio, negocio){
+    return this.referenciaNegocios.update(idNegocio, negocio);
   }
 
   eliminar(idNegocio){
     this.dbFirebase.object('/negocios/' + idNegocio).remove();
   }
 
-  listar():Observable<any[]>{
+  listar():Observable<Negocio[]>{
     return this.listaNegocios;
   }
 

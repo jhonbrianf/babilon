@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Negocio } from '../interface/negocio';
-import * as firebase from 'firebase';
+import { NegociosService } from '../services/negocios.service';
 
 @Component({
   selector: 'app-admin-actualizar-negocio',
@@ -11,36 +10,40 @@ import * as firebase from 'firebase';
 })
 export class AdminActualizarNegocioPage implements OnInit {
 
+  // Variables
   negocio: Negocio;
-  db$: any;
-  idObtenido: string;
+  idNegocioObtenido: string;
 
-  constructor(private router: Router, private db: AngularFireDatabase, private activeRoute: ActivatedRoute) {
-  
-    this.idObtenido = this.activeRoute.snapshot.paramMap.get('id');
-    this.obtenerDatos();
+  constructor(
+    private router: Router,
+    private activeRoute: ActivatedRoute,
+    private negocioService: NegociosService) {
+    //Inicializacion de constructor
+    //inicializando la interface de negocio
+    this.negocio = {
+      $key: "", nombre: "", costo: 0, ubicacion: "", latitud: 0, longitud: 0, estado: "",
+      detalle: {
+        bar: false, capasidad: 0, escenario: false, garage: false, garsones: 0, servicioComida: false, tipoSalon: ""
+      }
+    }
+
   }
 
   ngOnInit() {
-    this.db$ = this.db.list('/negocios');
-
+    this.obtenerDatos();
   }
 
   obtenerDatos() {
-    var idNegocio = this.idObtenido;
-    var ref = firebase.database().ref('negocios/');
-    ref.once("value")
-      .then((resultado) => {
-        var negocio = resultado.child(idNegocio).val();
-        console.log(negocio);
-      });
+    this.idNegocioObtenido = this.activeRoute.snapshot.paramMap.get('idNegocio');
+    this.negocioService.obtenerDatos(this.idNegocioObtenido).valueChanges().subscribe((resultado: Negocio) => {
+      console.log(resultado);
+      this.negocio = resultado;
+    });
   }
 
-  actualizar(forms) {
-
-  }
-
-  atras() {
-    this.router.navigateByUrl('/admin-negocios');
+  actualizar(form: any) {
+    this.negocioService.actualizar(this.idNegocioObtenido, form.value).then(resuldato => {
+      this.router.navigateByUrl('/admin-negocios');
+    });
   }
 }
