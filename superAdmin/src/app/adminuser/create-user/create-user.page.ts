@@ -9,8 +9,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class CreateUserPage implements OnInit {
  usuario:Usuarios;
- @ViewChild('return') back:any;
-
   constructor( private user:UsersService,private router: Router,public afAuth: AngularFireAuth) { 
   }
 
@@ -21,6 +19,7 @@ export class CreateUserPage implements OnInit {
 
        this.usuario=forms.value;
        this.usuario.nivel=1;
+       this.usuario.estado=true;
        this.afAuth.auth.createUserWithEmailAndPassword(this.usuario.correo as string, this.usuario.password as string)
        .then(() => {
         delete this.usuario.password;

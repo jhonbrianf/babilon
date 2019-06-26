@@ -27,23 +27,32 @@ export class LoginPage implements OnInit {
       .then((data) => {
         // on success populate variables and select items
         this.db.list('/usuarios', ref => ref.orderByChild('correo').equalTo(data.user.email)).snapshotChanges().subscribe(usuario=>{
-
+                console.log(usuario[0].payload.val());
           if(usuario[0]){
           let actual=usuario[0].payload.val() as Usuarios;
+          if(actual.estado){
           if(actual.nivel==1){
+            console.log("sssssss");
             this.router.navigate(['/list-user']);
           }else
           if(actual.nivel==2){
             this.router.navigate(['/admin-negocios']);
           }
         }else{
-          this.mensaje="error usuario no encontrado, es posible que el usuario aya sido borrado"
+          this.mensaje="error usuario no encontrado, es posible que el usuario aya sido  o suspendido"
+        }
+        }else{
+          this.mensaje="error usuario no encontrado, es posible que el usuario aya sido  o suspendido"
         }
         })
       })
       .catch((error) => {
-        this.mensaje="error usuario no encontrado, es posible que el usuario aya sido borrado"
+        this.mensaje="error usuario no encontrado, es posible que el usuario aya sido borrado o  suspendido"
       });
+  }
+
+  Register(){
+    this.router.navigate(['/register-user']);
   }
 
   async forgot() {

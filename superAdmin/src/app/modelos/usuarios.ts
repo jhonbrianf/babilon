@@ -5,4 +5,5 @@ interface Usuarios {
     correo:String;
     password:string;
     nivel:Number;
+    estado:Boolean;
   }

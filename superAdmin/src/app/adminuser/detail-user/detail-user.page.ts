@@ -10,7 +10,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class DetailUserPage implements OnInit {
   usuario:Usuarios;
   constructor(private user:UsersService,private router: Router,private route: ActivatedRoute) {
-    this.usuario = {nombre:"",apellidos:"",edad:0,correo:"",nivel:2,password:""};
+    this.usuario = {nombre:"",apellidos:"",edad:0,correo:"",nivel:2,password:"",estado:true};
    }
 
   ngOnInit() {
