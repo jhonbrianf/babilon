@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-
+import { AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   authState: any = null;
-
-  constructor(private afAuth: AngularFireAuth) {
+ email:string="";
+  constructor(private afAuth: AngularFireAuth,private db: AngularFireDatabase) {
 
             this.afAuth.authState.subscribe((auth) => {
-              this.authState = auth
+              this.authState = auth;
+              this.email=auth.email;
             });
           }
 
@@ -24,7 +25,25 @@ export class AuthService {
                   reject('No user logged in');
                 }
               })
+          
+          })
+        }
+        getCurrentNivel(email){
+          return new Promise<any>((resolve, reject) => {
+            var user = this.db.list('/usuarios', ref => ref.orderByChild('correo').equalTo(email)).snapshotChanges().subscribe(usuario=>{
+             
+              if (usuario) {
+                resolve(usuario);
+              } else {
+                reject('No user logged in');
+              }
             })
+        
+        })
+  
+        }
+     getCurrentEmail(){
+           return this.email;
           }
   // Returns true if user is logged in
   get authenticated(): boolean {

@@ -1,28 +1,34 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleGuard implements CanActivate {
   actual:any;
-  constructor(private router: Router) {
+  constructor(private router: Router,private auth: AuthService) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if (route.data.nivel==1) {
-      return true;
-  }
-  if (route.data.nivel==2) {
-    return true;
-}
-if (route.data.nivel==2) {
-  return true;
-}
-    // navigate to not found page
-    this.router.navigate(['home']);
-    return false;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.auth.getCurrentUser()
+      .then(user => {   
+      this.auth.getCurrentNivel(user.email).then(usuario=>{
+      if(usuario[0].payload.val().nivel==route.data.nivel){
+        return resolve(true);
+      }else{
+        this.router.navigate(['/login']);
+        return resolve(false);
+      }
+      })
+      }, err => {
+        this.router.navigate(['/login']);
+        return resolve(false);
+      })
+    })
   }
   
 }
