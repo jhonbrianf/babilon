@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,11 @@ export class AppComponent {
       title: 'Negocios',
       url: '/admin-negocios',
       icon: 'list'
+    },
+    {
+      title: 'Usuarios',
+      url: '/list-user',
+      icon: 'list'
     }
 
   ];
@@ -35,8 +41,11 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private auth: AuthService
   ) {
+    console.log("inicio");this.auth.authenticated
+
     this.initializeApp();
   }
 
