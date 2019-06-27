@@ -27,7 +27,9 @@ export class AdminActualizarNegocioPage implements OnInit {
       detalle: {
         bar: false, capasidad: 0, escenario: false, garage: false, garsones: 0, servicioComida: false, tipoSalon: ""
       },
-      imagen:""
+      imagen:"",
+      idadministrador:"",
+      nrocontacto:""
     }
 
   }

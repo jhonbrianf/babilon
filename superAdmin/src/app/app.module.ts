@@ -13,7 +13,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuthModule  } from '@angular/fire/auth'
+import { Camera} from '@ionic-native/camera/ngx'
 import { AngularFireStorageModule  } from '@angular/fire/storage'
+import { from } from 'rxjs';
 
 export const environment = {
   production: false,
@@ -43,6 +45,7 @@ export const environment = {
     StatusBar,
     AngularFireDatabase,
     SplashScreen,
+    Camera,
     AngularFireDatabase,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     GoogleMaps

@@ -30,10 +30,14 @@
               <ion-label position="floating">Ubicación</ion-label>
               <ion-input name="ubicacion" type="text" ngModel></ion-input>
             </ion-item>
-
+            
+            <ion-item>
+              <ion-label position="floating">Telefono</ion-label>
+              <ion-input name="ubicacion" type="text" ngModel></ion-input>
+            </ion-item>
             <ion-item>
               <ion-label position="floating">Latitud</ion-label>
-              <ion-input name="latitud" type="number" ngModel></ion-input>
+              <ion-input name="nrocontacto" type="text" ngModel></ion-input>
             </ion-item>
 
             <ion-item>
@@ -90,7 +94,7 @@
               <ion-checkbox name="servicioComida" checked="true" ngModel=true></ion-checkbox>
             </ion-item>
 
-            <ion-item (click)="filechoosser(fileInput)">
+            <ion-item (click)="subirImagen2(fileInput)">
               <label for="file">Subir Imagen:</label>
               <input #fileInput hidden type="file" (change)="subirImagen($event)" accept=".png,.jpg" ngModel />
             </ion-item>
