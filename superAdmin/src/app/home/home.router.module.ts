@@ -25,7 +25,16 @@ const routes: Routes = [
             loadChildren:'../client-mapgoogle/client-mapgoogle.module#ClientMapgooglePageModule'
           }
         ]
-      },     
+      },   
+      {
+        path: 'cliente-lista-reservas',
+        children: [
+          {
+            path: '',
+            loadChildren: '../cliente-lista-reservas/cliente-lista-reservas.module#ClienteListaReservasPageModule'
+          }
+        ]
+      },   
       {
         path: '',
         redirectTo: '/home/cliente-mapa',

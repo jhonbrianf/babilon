@@ -27,8 +27,6 @@ const routes: Routes = [
   { path: 'cliente-detalle-negocio/:idNegocio', loadChildren:'./cliente-detalles-negocio/cliente-detalles-negocio.module#ClienteDetallesNegocioPageModule' },
   { path: 'cliente-reserva/:idSalon', loadChildren: './cliente-reserva/cliente-reserva.module#ClienteReservaPageModule' }
 
-
-
 ];
 
 @NgModule({
