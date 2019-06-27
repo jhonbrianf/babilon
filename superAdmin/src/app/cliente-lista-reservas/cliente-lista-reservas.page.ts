@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReservasService } from '../services/reservas.service';
 import { Reserva } from '../interface/reserva';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cliente-lista-reservas',
@@ -16,7 +17,8 @@ export class ClienteListaReservasPage implements OnInit {
   reservasAceptadas: Reserva[]=[];
 
   constructor(
-    private reservaService: ReservasService) {
+    private reservaService: ReservasService,
+    private toastController: ToastController) {
     // Inicializacion del constructor
    }
 
@@ -47,5 +49,22 @@ export class ClienteListaReservasPage implements OnInit {
         this.reservasAceptadas.push(element);
       }
     });
+  }
+
+  rechazar(item) {
+    item.estado = "rechazado";
+    this.reservaService.actualizar(item.key, item).then(resuldato => {
+      this.mensajeToast("Reserva Cancelada");
+    });
+    
+    this.listarReservas();
+  }
+
+  async mensajeToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000
+    });
+    toast.present();
   }
 }

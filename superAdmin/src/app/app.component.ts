@@ -24,11 +24,16 @@ export class AppComponent {
       icon: 'list'
     },
     {
+      title: 'Reservas',
+      url: '/admin-reservas',
+      icon: 'list'
+    },
+    {
       title: 'Usuarios',
       url: '/list-user',
       icon: 'list'
     }
-
+    
   ];
 
   constructor(

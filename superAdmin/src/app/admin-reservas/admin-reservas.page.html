@@ -1,9 +1,92 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>admin-reservas</ion-title>
+  <ion-toolbar color=primary>
+    <ion-title>Reservas</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="solicitudes" checked>
+      <ion-label>Solicitudes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="aceptados">
+      <ion-label>Aceptados</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="rechazados">
+      <ion-label>Cancelados</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngIf="segmento=='solicitudes'">
+    <ion-item-sliding *ngFor="let item of reservasSolicitudes">
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="rechazar(item)">Cancelar</ion-item-option>
+      </ion-item-options>
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="aceptar(item)">Aceptar</ion-item-option>
+      </ion-item-options>
+
+      <ion-item>
+        <ion-grid>
+          <ion-row justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Evento: {{ item.evento.nombre }}</ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Inicio: {{ item.evento.inicio }}</ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Fin: {{ item.evento.fin }}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list *ngIf="segmento=='aceptados'">
+    <ion-item *ngFor="let item of reservasAceptadas">
+      <ion-item>
+        <ion-grid>
+          <ion-row justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Evento: {{ item.evento.nombre }}</ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Inicio: {{ item.evento.inicio }}</ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Fin: {{ item.evento.fin }}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="segmento=='rechazados'">
+    <ion-item *ngFor="let item of reservasRechazadas">
+      <ion-item>
+        <ion-grid>
+          <ion-row justify-content-center>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Evento: {{ item.evento.nombre }}</ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Inicio: {{ item.evento.inicio }}</ion-label>
+            </ion-col>
+            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+              <ion-label>Fin: {{ item.evento.fin }}</ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
