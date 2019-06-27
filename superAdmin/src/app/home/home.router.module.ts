@@ -5,7 +5,7 @@ import { HomePage } from './home.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: 'home',
     component: HomePage,
     children: [
       {
@@ -28,14 +28,14 @@ const routes: Routes = [
       },     
       {
         path: '',
-        redirectTo: '/tabs/cliente-mapa',
+        redirectTo: '/home/cliente-mapa',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/cliente-mapa',
+    redirectTo: '/home/cliente-mapa',
     pathMatch: 'full'
   }
 ];
