@@ -30,7 +30,6 @@ export class UsersService {
    }
    update(key,data){
     delete data.key;
-     console.log(key,data);
    return this.UsuarioRef.update(key,data);
    }
    list():Observable<Usuarios[]> {
