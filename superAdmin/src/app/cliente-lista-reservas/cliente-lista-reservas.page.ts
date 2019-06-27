@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReservasService } from '../services/reservas.service';
 import { Reserva } from '../interface/reserva';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-lista-reservas',
@@ -18,7 +19,8 @@ export class ClienteListaReservasPage implements OnInit {
 
   constructor(
     private reservaService: ReservasService,
-    private toastController: ToastController) {
+    private toastController: ToastController,
+    private router: Router) {
     // Inicializacion del constructor
    }
 
@@ -66,5 +68,9 @@ export class ClienteListaReservasPage implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  detalleReserva(item){
+    this.router.navigate(['/cliente-detalle-reserva', item.key]);
   }
 }

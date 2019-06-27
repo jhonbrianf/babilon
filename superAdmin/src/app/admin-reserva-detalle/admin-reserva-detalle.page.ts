@@ -9,12 +9,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Negocio } from '../interface/negocio';
 
 @Component({
-  selector: 'app-cliente-reserva',
-  templateUrl: './cliente-reserva.page.html',
-  styleUrls: ['./cliente-reserva.page.scss'],
+  selector: 'app-admin-reserva-detalle',
+  templateUrl: './admin-reserva-detalle.page.html',
+  styleUrls: ['./admin-reserva-detalle.page.scss'],
 })
-export class ClienteReservaPage implements OnInit {
-
+export class AdminReservaDetallePage implements OnInit {
   minDate = new Date().toISOString();
 
   eventSource = [];
@@ -28,10 +27,9 @@ export class ClienteReservaPage implements OnInit {
 
   // Variables
   reserva: Reserva;
-  reservaSolicitud: Reserva[] = [];
+  idNegocio: string;
   nombreNegocio: string;
-  idNegocioObtenida: string;
-  segmento: string = "aceptadas";
+  idReserveObtenida: string;
 
   constructor(
     private alertCtrl: AlertController,
@@ -39,18 +37,18 @@ export class ClienteReservaPage implements OnInit {
     private locale: string,
     private reservaService: ReservasService,
     private negocioService: NegociosService,
-    private activeRoute: ActivatedRoute) {
+    private activeRoute: ActivatedRoute, ) {
     // Inicializacion del constructor
     this.reserva = {
       idUsuario: '', idNegocio: '', estado: '',
       evento: { title: '', startTime: '', endTime: '' }
     }
 
-    this.idNegocioObtenida = this.activeRoute.snapshot.paramMap.get('idNegocio');
   }
 
   ngOnInit() {
     //this.resetEvent();
+    this.obtenerDatos();
     this.listarReservas();
   }
 
@@ -107,57 +105,42 @@ export class ClienteReservaPage implements OnInit {
   onTimeSelected(ev) {
     let selected = new Date(ev.selectedTime);
     this.reserva.evento.startTime = selected.toISOString();
-    selected.setHours(selected.getHours() + 7);
+    selected.setHours(selected.getHours() + 1);
     this.reserva.evento.endTime = (selected.toISOString());
   }
 
-  // Create the right event format and reload source
-  async addEvent() {
-    this.reserva.estado = "solicitud";
-    this.reserva.idUsuario = "asdasd";
-    this.reserva.idNegocio = this.idNegocioObtenida;
-
-    this.reservaService.crear(this.reserva).then(resultado => {
-    });
-
-    this.eventSource = [];
-    this.reservaSolicitud = [];
-    this.resetEvent();
-  }
-
-  async listarReservas() {
-
+  listarReservas() {
     let fecha1, fecha2;
     this.eventSource = [];
-    this.reservaSolicitud = [];
     this.reservaService.listar().subscribe(resultado => {
-      this.obtenerNombreNegocio();
       resultado.forEach(element => {
-        if (element.idNegocio == this.idNegocioObtenida && element.estado == "aceptada") {
+        if (element.idNegocio == this.idNegocio && element.estado == "aceptada") {
           fecha1 = new Date(element.evento.startTime);
           fecha2 = new Date(element.evento.endTime);
           element.evento.startTime = fecha1;
           element.evento.endTime = fecha2;
           this.eventSource.push(element.evento);
-        }if (element.idNegocio == this.idNegocioObtenida && element.estado == "solicitud"){
-          this.reservaSolicitud.push(element);
         }
       });
 
-      //this.eventSource = resultado;
       this.myCal.loadEvents();
       console.log("reservas", this.eventSource);
-      //this.validacionReservas()
     });
   }
 
+  obtenerDatos() {
+    this.idReserveObtenida = this.activeRoute.snapshot.paramMap.get('idReserva');
+    this.reservaService.obtenerDatos(this.idReserveObtenida).valueChanges().subscribe((resultado: Reserva) => {
+      this.idNegocio = resultado.idNegocio;
+      this.obtenerNombreNegocio();
+    });
+  }
+  
   obtenerNombreNegocio() {
-    this.negocioService.obtenerDatos(this.idNegocioObtenida).valueChanges().subscribe((resultado: Negocio) => {
+    console.log(this.idNegocio);
+    this.negocioService.obtenerDatos(this.idNegocio).valueChanges().subscribe((resultado: Negocio) => {
+      console.log("Nombre: ", resultado.nombre);
       this.nombreNegocio = resultado.nombre;
     });
-  }
-
-  segmentChanged(ev: any) {
-    this.segmento = ev.detail.value;
   }
 }

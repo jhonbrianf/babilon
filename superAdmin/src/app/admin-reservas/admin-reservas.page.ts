@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Reserva } from '../interface/reserva';
 import { ReservasService } from '../services/reservas.service';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-reservas',
@@ -19,7 +20,8 @@ export class AdminReservasPage implements OnInit {
 
   constructor(
     private reservaService: ReservasService,
-    private toastController: ToastController) {
+    private toastController: ToastController,
+    private router: Router) {
     // Inicializacion del constructor
   }
 
@@ -79,5 +81,14 @@ export class AdminReservasPage implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  eliminar(item){
+    this.reservaService.eliminar(item.key);
+    this.mensajeToast("Reserva Eliminada Exitosamente.");
+  }
+
+  detalleReserva(item){
+    this.router.navigate(['/cliente-detalle-reserva', item.key]);
   }
 }
