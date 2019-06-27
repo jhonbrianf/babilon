@@ -23,7 +23,9 @@ const routes: Routes = [
   { path: 'admin-agregar-negocio', loadChildren: './admin-agregar-negocio/admin-agregar-negocio.module#AdminAgregarNegocioPageModule',canActivate: [AutGuardGuard] },
   { path: 'admin-actualizar-negocio/:idNegocio', loadChildren: './admin-actualizar-negocio/admin-actualizar-negocio.module#AdminActualizarNegocioPageModule',canActivate: [AutGuardGuard] },
   { path: 'detail-user/:id', loadChildren: './adminuser/detail-user/detail-user.module#DetailUserPageModule' },
-  { path: 'register-user', loadChildren: './register-user/register-user.module#RegisterUserPageModule' }
+  { path: 'register-user', loadChildren: './register-user/register-user.module#RegisterUserPageModule' },
+  { path: 'cliente-detalle-negocio/:idNegocio', loadChildren:'./cliente-detalles-negocio/cliente-detalles-negocio.module#ClienteDetallesNegocioPageModule' },
+  { path: 'cliente-reserva/:idSalon', loadChildren: './cliente-reserva/cliente-reserva.module#ClienteReservaPageModule' }
 
 
 
