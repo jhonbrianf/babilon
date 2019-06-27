@@ -12,7 +12,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireDatabase } from '@angular/fire/database';
-import {AngularFireAuthModule } from '@angular/fire/auth'
+import { AngularFireAuthModule  } from '@angular/fire/auth'
+import { AngularFireStorageModule  } from '@angular/fire/storage'
 
 export const environment = {
   production: false,
@@ -35,6 +36,7 @@ export const environment = {
     AngularFireAuthModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    AngularFireStorageModule
     
   ],
   providers: [

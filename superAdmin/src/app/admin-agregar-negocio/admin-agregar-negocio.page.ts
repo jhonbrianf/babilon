@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Negocio } from '../interface/negocio';
 import { NegociosService } from '../services/negocios.service';
 import { ToastController } from '@ionic/angular';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 
 @Component({
@@ -14,12 +15,16 @@ export class AdminAgregarNegocioPage implements OnInit {
 
   negocio: Negocio;
   db$: any;
+  nombreImagen: string;
 
   constructor(
     private router: Router,
     private negocioService: NegociosService,
-    private toastController: ToastController) {
+    private toastController: ToastController,
+    private afStorage: AngularFireStorage) {
     // Inicializacion de constructor
+
+
   }
 
   ngOnInit() {
@@ -27,6 +32,7 @@ export class AdminAgregarNegocioPage implements OnInit {
   }
 
   guardar(form: any) {
+    form.value.imagen = this.nombreImagen;
     this.negocioService.crear(form.value).then(resultado=>{
       this.router.navigateByUrl('/admin-negocios');
       this.mensajeToast("Registro Agregado Exitosamente.")
@@ -40,4 +46,11 @@ export class AdminAgregarNegocioPage implements OnInit {
     });
     toast.present();
   }
+
+  subirImagen(event) {
+    this.nombreImagen = event.target.files[0].name;
+    this.afStorage.upload(event.target.files[0].name , event.target.files[0]);  
+  }
+
+  
 }
