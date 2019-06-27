@@ -19,7 +19,7 @@ export class ListUserPage implements OnInit {
   }
   ngOnInit() {
   this.user.list().subscribe(data=>{
-    console.log(data);
+
 this.usuarios=data;
   })
   this.user.list2().subscribe(data=>{
