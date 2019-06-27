@@ -74,4 +74,21 @@
     </ion-row>
   </ion-grid>
 
+
+  <ion-card>
+    <form #form="ngForm" (ngSubmit)="reservarSalon(form)">
+      <ion-card-header>
+        <ion-card-title>Elija la fecha que desa reservar:</ion-card-title>
+        <ion-datetime name="fechaReserva" value="2019-06-26" min="2019-01" max="2030" displayFormat="MMM, DD, YYYY"
+          done-text="Seleccionar" cancel-text="Cancelar"
+          monthShortNames="ene, feb, mar, abr, may, jun, jul, ago, sep, oct, nov, dic" ngModel>
+        </ion-datetime>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-button size="medium" type="submit" color="success" expand="block">Reservar</ion-button>
+      </ion-card-content>
+    </form>
+  </ion-card>
+
 </ion-content>

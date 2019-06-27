@@ -13,6 +13,7 @@ export class ClienteDetallesNegocioPage implements OnInit {
   negocio: Negocio;
   idNegocioObtenido: string;
 
+
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
@@ -39,6 +40,7 @@ export class ClienteDetallesNegocioPage implements OnInit {
     });
   }
 
-  reservarSalon(){
+  reservarSalon(form) {
+    console.log(form.value);
   }
 }
