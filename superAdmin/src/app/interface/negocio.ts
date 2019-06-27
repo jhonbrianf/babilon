@@ -7,6 +7,8 @@ export interface Negocio {
     longitud: number;
     estado: string;
     imagen: string;
+    idadministrador:string;
+    nrocontacto:string;
     detalle: {
         bar: boolean,
         capasidad: number,

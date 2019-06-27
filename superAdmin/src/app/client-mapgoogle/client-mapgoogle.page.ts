@@ -82,11 +82,22 @@ export class ClientMapgooglePage implements OnInit {
       position: {
         lat: marker.latitud,
         lng: marker.longitud
-      }
+      },
+      styles: {
+        'text-align': 'center',
+        'font-style': 'italic',
+        'font-weight': 'bold',
+        'color': 'red'
+      },
+      snippet: 'descripcion del negocio',
+      draggable: false,
+      disableAutoPan: true
     });
-
+    newmarker.showInfoWindow();
+//MARKER_CLICK
     newmarker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
       alert('clicked');
+
     });
   }
 
