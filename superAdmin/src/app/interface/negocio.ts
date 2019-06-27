@@ -6,6 +6,7 @@ export interface Negocio {
     latitud: number;
     longitud: number;
     estado: string;
+    imagen: string;
     detalle: {
         bar: boolean,
         capasidad: number,
