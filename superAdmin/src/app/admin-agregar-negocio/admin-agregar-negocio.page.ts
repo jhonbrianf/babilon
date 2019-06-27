@@ -54,8 +54,15 @@ export class AdminAgregarNegocioPage implements OnInit {
     this.afStorage.upload(event.target.files[0].name , event.target.files[0]);  
   }
 
-  filechoosser() {
-    this.fileInput.nativeElement.click();
+  subirImagen2(event) {
+    let refr=  this.afStorage.ref("upload");
+    const imageRef = refr.putString("string",'base64', { contentType: 'image/png' }).then((savedPicture) => {
+      console.log();
+    })
+    }
+    //http://www.offlineprogrammer.com/upload-images-firebase-storage-using-ionic-framework/
+  filechoosser(element) {
+    element.click();
   }
   
 }

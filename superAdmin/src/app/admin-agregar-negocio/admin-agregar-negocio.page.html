@@ -90,9 +90,9 @@
               <ion-checkbox name="servicioComida" checked="true" ngModel=true></ion-checkbox>
             </ion-item>
 
-            <ion-item (click)="filechoosser()">
+            <ion-item (click)="filechoosser(fileInput)">
               <label for="file">Subir Imagen:</label>
-              <input hidden name="imagen" type="file" (change)="subirImagen($event)" accept=".png,.jpg" ngModel #fileInput/>
+              <input #fileInput hidden type="file" (change)="subirImagen($event)" accept=".png,.jpg" ngModel />
             </ion-item>
           </div>
 
