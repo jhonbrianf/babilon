@@ -26,7 +26,8 @@ export class AdminActualizarNegocioPage implements OnInit {
       $key: "", nombre: "", costo: 0, ubicacion: "", latitud: 0, longitud: 0, estado: "",
       detalle: {
         bar: false, capasidad: 0, escenario: false, garage: false, garsones: 0, servicioComida: false, tipoSalon: ""
-      }
+      },
+      imagen:""
     }
 
   }

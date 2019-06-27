@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Negocio } from '../interface/negocio';
 import { NegociosService } from '../services/negocios.service';
@@ -12,6 +12,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
   styleUrls: ['./admin-agregar-negocio.page.scss'],
 })
 export class AdminAgregarNegocioPage implements OnInit {
+  @ViewChild('fileInput') fileInput: ElementRef;
 
   negocio: Negocio;
   db$: any;
@@ -48,9 +49,13 @@ export class AdminAgregarNegocioPage implements OnInit {
   }
 
   subirImagen(event) {
+    alert("llego");
     this.nombreImagen = event.target.files[0].name;
     this.afStorage.upload(event.target.files[0].name , event.target.files[0]);  
   }
 
+  filechoosser() {
+    this.fileInput.nativeElement.click();
+  }
   
 }
