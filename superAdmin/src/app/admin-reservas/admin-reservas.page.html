@@ -54,27 +54,35 @@
   </ion-list>
 
   <ion-list *ngIf="segmento=='aceptados'">
-    <ion-item *ngFor="let item of reservasAceptadas">
-      <ion-item (click)="detalleReserva(item)">
-        <ion-grid>
-          <ion-row justify-content-center>
-            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-              <ion-label>Evento: {{ item.evento.title }}</ion-label>
-            </ion-col>
-            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-              <ion-label>Inicio: {{ item.evento.startTime | date:'MM/dd/yyyy h:mm a' }}</ion-label>
-            </ion-col>
-            <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-              <ion-label>Fin: {{ item.evento.endTime | date:'MM/dd/yyyy h:mm a' }}</ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-    </ion-item>
 
-    <ion-item *ngIf="reservasAceptadas==''">
-      <p>No hay reservas aceptadas</p>
-    </ion-item>
+    <ion-row>
+      <!-- Move back one screen of the slides -->
+      <ion-col size="4" text-left>
+        <ion-button fill="clear" (click)="back()">
+          <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="4" text-center>
+        <div class="textoMes">
+          {{ viewTitle }}
+        </div>
+      </ion-col>
+
+
+      <!-- Move forward one screen of the slides -->
+      <ion-col size="4" text-right>
+        <ion-button fill="clear" (click)="next()">
+          <ion-icon name="arrow-forward" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+      (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
+      (onTimeSelected)="onTimeSelected($event)" startHour="6" endHour="20" step="30" startingDayWeek="1">
+    </calendar>
+
   </ion-list>
 
   <ion-list *ngIf="segmento=='rechazados'">

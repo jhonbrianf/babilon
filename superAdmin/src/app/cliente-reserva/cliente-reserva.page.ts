@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Inject, LOCALE_ID } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
 import { Reserva } from '../interface/reserva';
@@ -7,6 +7,7 @@ import { ReservasService } from '../services/reservas.service';
 import { NegociosService } from '../services/negocios.service';
 import { ActivatedRoute } from '@angular/router';
 import { Negocio } from '../interface/negocio';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-cliente-reserva',
@@ -39,7 +40,9 @@ export class ClienteReservaPage implements OnInit {
     private locale: string,
     private reservaService: ReservasService,
     private negocioService: NegociosService,
-    private activeRoute: ActivatedRoute) {
+    private activeRoute: ActivatedRoute,
+    private authService: AuthService,
+    private toastController: ToastController) {
     // Inicializacion del constructor
     this.reserva = {
       idUsuario: '', idNegocio: '', estado: '',
@@ -114,10 +117,11 @@ export class ClienteReservaPage implements OnInit {
   // Create the right event format and reload source
   async addEvent() {
     this.reserva.estado = "solicitud";
-    this.reserva.idUsuario = "asdasd";
+    this.reserva.idUsuario = this.authService.email;
     this.reserva.idNegocio = this.idNegocioObtenida;
 
     this.reservaService.crear(this.reserva).then(resultado => {
+      this.mensajeToast("Reserva realizada, esta en Solicitudes.")
     });
 
     this.eventSource = [];
@@ -144,10 +148,7 @@ export class ClienteReservaPage implements OnInit {
         }
       });
 
-      //this.eventSource = resultado;
       this.myCal.loadEvents();
-      console.log("reservas", this.eventSource);
-      //this.validacionReservas()
     });
   }
 
@@ -159,5 +160,13 @@ export class ClienteReservaPage implements OnInit {
 
   segmentChanged(ev: any) {
     this.segmento = ev.detail.value;
+  }
+
+  async mensajeToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 2000
+    });
+    toast.present();
   }
 }

@@ -27,7 +27,6 @@ const routes: Routes = [
   { path: 'cliente-detalle-negocio/:idNegocio', loadChildren:'./cliente-detalles-negocio/cliente-detalles-negocio.module#ClienteDetallesNegocioPageModule' },
   { path: 'cliente-reserva/:idNegocio', loadChildren: './cliente-reserva/cliente-reserva.module#ClienteReservaPageModule' },
   { path: 'cliente-detalle-reserva/:idReserva', loadChildren: './cliente-detalle-reserva/cliente-detalle-reserva.module#ClienteDetalleReservaPageModule' },
-  { path: 'admin-reserva-detalle/:idReserva', loadChildren: './admin-reserva-detalle/admin-reserva-detalle.module#AdminReservaDetallePageModule' }
 
 
 
