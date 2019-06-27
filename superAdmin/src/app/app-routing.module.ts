@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'detail-user/:id', loadChildren: './adminuser/detail-user/detail-user.module#DetailUserPageModule' },
   { path: 'register-user', loadChildren: './register-user/register-user.module#RegisterUserPageModule' },
   { path: 'cliente-detalle-negocio/:idNegocio', loadChildren:'./cliente-detalles-negocio/cliente-detalles-negocio.module#ClienteDetallesNegocioPageModule' },
-  { path: 'cliente-reserva/:idSalon', loadChildren: './cliente-reserva/cliente-reserva.module#ClienteReservaPageModule' }
+  { path: 'cliente-reserva/:idNegocio', loadChildren: './cliente-reserva/cliente-reserva.module#ClienteReservaPageModule' },
+  { path: 'cliente-detalle-reserva/:idReserva', loadChildren: './cliente-detalle-reserva/cliente-detalle-reserva.module#ClienteDetalleReservaPageModule' },
 
 
 

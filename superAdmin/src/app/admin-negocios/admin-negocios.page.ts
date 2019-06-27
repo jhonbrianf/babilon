@@ -81,4 +81,5 @@ export class AdminNegociosPage implements OnInit {
     this.negocioService.eliminar(item.key);
     this.mensajeToast("Registro Eliminado Exitosamente.");
   }
+
 }

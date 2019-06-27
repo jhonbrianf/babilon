@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NegociosService } from '../services/negocios.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Negocio } from '../interface/negocio';
-import { Reserva } from '../interface/reserva';
-import { ReservasService } from '../services/reservas.service';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-cliente-detalles-negocio',
@@ -15,13 +12,11 @@ export class ClienteDetallesNegocioPage implements OnInit {
   // Variables
   negocio: Negocio;
   idNegocioObtenido: string;
-  reserva: Reserva;
 
   constructor(
     private router: Router,
     private activeRoute: ActivatedRoute,
-    private negocioService: NegociosService,
-    private reservaService: ReservasService) {
+    private negocioService: NegociosService) {
     //Inicializacion del contructor
     //inicializando la interface de negocio
     this.negocio = {

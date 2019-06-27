@@ -13,13 +13,10 @@ export class AutGuardGuard implements CanActivate {
 
 
    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-console.log("yyyyyy");
+
     return new Promise((resolve, reject) => {
       this.auth.getCurrentUser()
-      .then(user => {
-      
-        console.log("tgtrhr");
-       
+      .then(user => {   
         return resolve(true);
       }, err => {
         this.router.navigate(['/login']);
