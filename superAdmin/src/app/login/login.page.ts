@@ -32,8 +32,8 @@ export class LoginPage implements OnInit {
           let actual=usuario[0].payload.val() as Usuarios;
           if(actual.estado){
           if(actual.nivel==1){
-            console.log("sssssss");
-            this.router.navigate(['/list-user']);
+            this.menuCtrl.enable(true);
+            this.router.navigateByUrl('/list-user');
           }else
           if(actual.nivel==2){
             this.router.navigate(['/admin-negocios']);
