@@ -70,6 +70,6 @@ export class AppComponent {
   }
   logOut(){
     this.afAuth.auth.signOut();
-    this.router.navigateByUrl('/')
+    this.router.navigateByUrl('/login')
   }
 }
