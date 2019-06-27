@@ -63,7 +63,7 @@ export class LoginPage implements OnInit {
         {
           name: 'email',
           type: 'email',
-          placeholder: 'wwwww.email@mail.com'
+          placeholder: 'ejemplo@mail.com'
         }],
       buttons: [
         {

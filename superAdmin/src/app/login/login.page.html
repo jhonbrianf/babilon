@@ -1,17 +1,11 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content color="primary" padding>
   <form #form="ngForm" (ngSubmit)="login(form.value)">
     <ion-grid>
       <ion-row color="primary" justify-content-center>
         <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
           <div text-center>
-            <h3>Login</h3>
-          </div>
+            <h3>BABILON</h3>
+          </div><br><br><br><br><br>
           <div padding>
             <ion-item>
               <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
@@ -20,18 +14,23 @@
               <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
             </ion-item>
           </div>
-          <ion-item >
-            {{mensaje}}
-          </ion-item>
-           <ion-item (click)="forgot()" >
-             recuperar cuenta
-           </ion-item>
+
           <div padding>
-            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Login</ion-button>
+            <ion-button size="large" type="submit" [disabled]="form.invalid" expand="block">Iniciar Sesión</ion-button>
           </div>
-          <ion-item (click)="Register()" >
+          <div padding>
+            <ion-item lines="none" slot="end" (click)="Register()">
               Registrarse
             </ion-item>
+            <ion-item lines="none" slot="end" (click)="forgot()">
+              Recuperar Cuenta
+            </ion-item>
+          </div>
+          <div padding center>
+            <ion-item lines="none">
+              {{mensaje}}
+            </ion-item>
+          </div>
         </ion-col>
       </ion-row>
     </ion-grid>
