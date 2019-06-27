@@ -36,13 +36,12 @@ export class LoginPage implements OnInit {
             this.router.navigateByUrl('/list-user');
           }else
           if(actual.nivel==2){
+            this.menuCtrl.enable(true);
             this.router.navigate(['/admin-negocios']);
           }else
-          if(actual.nivel==2){
-            this.router.navigate(['/']);
-          }
           if(actual.nivel==3){
-            this.router.navigate(['']);
+            this.menuCtrl.enable(true);
+            this.router.navigate(['/']);
           }
         }else{
           this.mensaje="error usuario no encontrado, es posible que el usuario aya sido  o suspendido"
