@@ -42,4 +42,7 @@ export class ReservasService {
     return this.dbFirebase.object('/reservas/' + idReserva);
   }
 
+  eliminarCampoKey(){
+    
+  }
 }

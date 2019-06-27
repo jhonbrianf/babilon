@@ -36,7 +36,6 @@ export class AdminReservasPage implements OnInit {
 
   // Variables
   reserva: Reserva;
-  idNegocio: string;
   nombreNegocio: string;
   idReserveObtenida: string;
 
@@ -78,12 +77,14 @@ export class AdminReservasPage implements OnInit {
     this.reservasRechazadas = [];
     this.eventSource = [];
 
-    let fecha1, fecha2;
+    let fecha1, fecha2, idnegocio;
 
     this.reservas.forEach(element => {
       if (element.estado == "solicitud") {
         this.reservasSolicitudes.push(element);
       } if (element.estado == "aceptada") {
+        idnegocio = element.idNegocio;
+        this.obtenerNombreNegocio(idnegocio);
         fecha1 = new Date(element.evento.startTime);
         fecha2 = new Date(element.evento.endTime);
         element.evento.startTime = fecha1;
@@ -93,7 +94,6 @@ export class AdminReservasPage implements OnInit {
         this.reservasRechazadas.push(element);
       }
     });
-    console.log("lista de reservas: ", this.eventSource);
   }
 
   aceptar(item) {
@@ -187,21 +187,10 @@ export class AdminReservasPage implements OnInit {
     this.reserva.evento.endTime = (selected.toISOString());
   }
 
-  /*obtenerDatos() {
-    this.idReserveObtenida = this.activeRoute.snapshot.paramMap.get('idReserva');
-    this.reservaService.obtenerDatos(this.idReserveObtenida).valueChanges().subscribe((resultado: Reserva) => {
-      this.idNegocio = resultado.idNegocio;
-      this.obtenerNombreNegocio();
-    });
-  }
-
-  obtenerNombreNegocio() {
-    console.log(this.idNegocio);
-    this.negocioService.obtenerDatos(this.idNegocio).valueChanges().subscribe((resultado: Negocio) => {
-      console.log("Nombre: ", resultado.nombre);
+  obtenerNombreNegocio(idNegocio) {
+    this.negocioService.obtenerDatos(idNegocio).valueChanges().subscribe((resultado: Negocio) => {
       this.nombreNegocio = resultado.nombre;
     });
-  }*/
-
+  }
 
 }
