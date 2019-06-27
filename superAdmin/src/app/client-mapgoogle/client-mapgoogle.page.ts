@@ -12,6 +12,9 @@ import {
   MyLocation,
   GoogleMapsMapTypeId
 } from '@ionic-native/google-maps';
+import { Negocio } from '../interface/negocio';
+import { NegociosService } from '../services/negocios.service';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-client-mapgoogle',
@@ -20,14 +23,33 @@ import {
 })
 export class ClientMapgooglePage implements OnInit {
   map:GoogleMap;
-  constructor() { } 
+  negocios:Negocio[]=[];
+  constructor(
+  private negocioService:NegociosService
+        ) { 
+            this.obtenerNegociosFirebase();
+            
+          } 
 
   ngOnInit(){
     this.loadMap();
   }
 
-  loadMap(){
-    LocationService.getMyLocation().then((mylocation:MyLocation)=>{
+  async obtenerNegociosFirebase(){
+   
+    this.negocioService.listar().subscribe(async (resultado) => {
+     this.negocios = await resultado;
+      this.negocios.forEach(element => {
+        this.agregarMarkers(element)
+      });
+      
+    });
+
+
+  }
+
+ async loadMap(){
+    LocationService.getMyLocation().then(async (mylocation:MyLocation)=>{
       let options: GoogleMapOptions = {
         mapType: GoogleMapsMapTypeId.TERRAIN,
         camera:{
@@ -43,25 +65,32 @@ export class ClientMapgooglePage implements OnInit {
           zoom: true,  
         }
       };
-      this.map = GoogleMaps.create('map_canvas', options);
+       this.map = await GoogleMaps.create('map_canvas', options);
 
-      let marker: Marker = this.map.addMarkerSync({
-        title: 'Ionic',
-        icon: 'blue',
-        animation: 'DROP',
-        position: {
-          lat: 43.0741904,
-          lng: -89.3809802
-        }
-      });
-      marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-        alert('clicked');
-      });
+      this.obtenerNegociosFirebase();    
 
     })
    
     
   }
+
+  agregarMarkers(marker:Negocio){
+    let newmarker:Marker= this.map.addMarkerSync({
+      title: marker.nombre,
+      icon: 'blue',
+      animation: 'DROP',
+      position: {
+        lat: marker.latitud,
+        lng: marker.longitud
+      }
+    });
+
+    newmarker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+      alert('clicked');
+    });
+  }
+
+  
 
 
 }
