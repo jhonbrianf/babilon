@@ -7,8 +7,42 @@
         </ion-toolbar>
       </ion-header>
       <ion-content>
-        <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+        <ion-list *ngIf="usuarioNivel==1">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages1">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-item (click)="logOut()">
+            <ion-icon slot="start" name="log-out"></ion-icon>
+            <ion-label>
+              Cerrar Sesión
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ion-list *ngIf="usuarioNivel==2">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages2">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-item (click)="logOut()">
+            <ion-icon slot="start" name="log-out"></ion-icon>
+            <ion-label>
+              Cerrar Sesión
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ion-list *ngIf="usuarioNivel==3">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages3">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
               <ion-icon slot="start" [name]="p.icon"></ion-icon>
               <ion-label>

@@ -13,12 +13,15 @@ import { UsersService } from './services/users.service';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  public appPages = [
+  public appPages1 = [
     {
-      title: 'Inicio',
-      url: '/home',
-      icon: 'home'
-    },
+      title: 'Usuarios',
+      url: '/list-user',
+      icon: 'list'
+    }
+  ];
+
+  public appPages2 = [
     {
       title: 'Negocios',
       url: '/admin-negocios',
@@ -28,14 +31,18 @@ export class AppComponent {
       title: 'Reservas',
       url: '/admin-reservas',
       icon: 'list'
-    },
-    {
-      title: 'Usuarios',
-      url: '/list-user',
-      icon: 'list'
     }
-    
   ];
+
+  public appPages3 = [
+    {
+      title: 'Inicio',
+      url: '/home',
+      icon: 'home'
+    }
+  ];
+
+  usuarioNivel: any;
 
   constructor(
     private platform: Platform,
@@ -64,6 +71,8 @@ export class AppComponent {
             this.afAuth.auth.signOut();
             this.router.navigate(['/'])
           }
+          
+          this.loadNivel();
         });
       })
     })
@@ -71,5 +80,14 @@ export class AppComponent {
   logOut(){
     this.afAuth.auth.signOut();
     this.router.navigateByUrl('/')
+  }
+
+  loadNivel(){
+    let email = this.auth.email;
+    this.auth.getCurrentNivel(email).then(resultado=>{
+
+      let actual=resultado[0].payload.val() as Usuarios;
+      this.usuarioNivel = actual.nivel;
+    })
   }
 }
